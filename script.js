@@ -12,7 +12,7 @@ function updateCodeVaultCounter() {
 }
 
 function incrementCodeVaultCounter() {
-    fetch(`${counterBaseUrl}/hit/aaronhastings.com/codevault`)
+    fetch(`${counterBaseUrl}/hit/a-a-rons-devspace.netlify.app/codevault`)
         .then(res => res.json())
         .then(data => {
             document.getElementById("codevault-count").innerText = data.value;
