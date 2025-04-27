@@ -2,27 +2,26 @@
 console.log("Welcome to my portfolio!");
 const counterBaseUrl = "https://api.countapi.xyz";
 
-// CODEVAULT COUNTER
 function updateCodeVaultCounter() {
-    fetch(`${counterBaseUrl}/get/https://a-a-rons-devspace.netlify.app/codevault`)
+    fetch(`${counterBaseUrl}/get/aaronhastings.com/codevault`)
         .then(res => res.json())
         .then(data => {
             document.getElementById("codevault-count").innerText = data.value;
         })
-        .catch(err => console.error("Failed to fetch CodeVault counter:", err));
+        .catch(err => console.error("Counter GET failed:", err));
 }
 
 function incrementCodeVaultCounter() {
-    fetch(`${counterBaseUrl}/hit/https://a-a-rons-devspace.netlify.app/codevault`)
+    fetch(`${counterBaseUrl}/hit/aaronhastings.com/codevault`)
         .then(res => res.json())
         .then(data => {
             document.getElementById("codevault-count").innerText = data.value;
         })
-        .catch(err => console.error("Failed to increment CodeVault counter:", err));
+        .catch(err => console.error("Counter HIT failed:", err));
 }
 
-// Run when page loads
 updateCodeVaultCounter();
+
 
 // Smooth scroll for internal links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
