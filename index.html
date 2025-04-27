@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaron Hastings | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>Aaron Hastings</h1>
+            <p>Computer Science Student and Developer</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="about" class="card">
+            <h2>About Me</h2>
+            <img src="IMG_0347.JPG" alt="Photo of Aaron Hastings" class="profile-photo">
+            <p>Hello! I'm Aaron Hastings, a Computer Science student specializing in software, website, and game development.</p>
+        </section>
+
+        <section id="projects">
+            <h2>My Projects</h2>
+			
+			<div class="project-card">
+                <h3>CodeVault (Desktop Application)</h3>
+                <img src="codevault_screenshot.png" alt="Screenshot of CodeVault Application" class="project-image">
+                <p>Reusing code is efficient. But finding it is HARD. Introducing CodeVault — a searchable, language-aware code file archive. Its drag and drop interface and search by tag features make code file storage and retrieval a breeze. Putting your desired code at your fingertips, instantly. Tag it, find it, reuse it!</p>
+                <a href="CodeVault.zip" download class="button">Download CodeVault</a>
+            </div>
+			
+            <div class="project-card">
+                <h3>Snack Man (C++ Console Game)</h3>
+                <video width="640" height="360" controls>
+                    <source src="snack_man video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p>A console-based game built with C++. Snack Man is a fun, interactive take on the classic Pac-Man game, featuring basic movement and object collection mechanics.</p>
+                <a href="SnackmanGame.zip" download class="button">Download SnackMan</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Eternal Echos (Unreal Engine 5)</h3>
+                <p>Eternal Echos is an open-world RPG third-person shooter, featuring MetaHumans, drivable cars, flying ships, interactable objects, and expansive exploration. Built entirely using Blueprints in Unreal Engine 5.4.</p>
+            </div>
+
+            
+
+        </section>
+
+        <section id="skills" class="card">
+            <h2>Skills</h2>
+            <ul class="skills-list">
+                <li>HTML & CSS</li>
+                <li>JavaScript</li>
+                <li>C++</li>
+                <li>SQL</li>
+                <li>Python</li>
+                <li>Unreal Engine (Blueprints & C++)</li>
+            </ul>
+        </section>
+
+        <section id="contact" class="card">
+            <h2>Contact Me</h2>
+            <form action="mailto:hastings311@gmail.com" method="post" enctype="text/plain" class="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit" class="button">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Aaron Hastings. All Rights Reserved.</p>
+        </div>
+    </footer>
+	<button id="backToTop" title="Back to Top">↑</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
