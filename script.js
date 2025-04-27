@@ -4,7 +4,7 @@ const counterBaseUrl = "https://api.countapi.xyz";
 
 // CODEVAULT COUNTER
 function updateCodeVaultCounter() {
-    fetch(`${counterBaseUrl}/get/aaronhastings.com/codevault`)
+    fetch(`${counterBaseUrl}/get/https://a-a-rons-devspace.netlify.app/codevault`)
         .then(res => res.json())
         .then(data => {
             document.getElementById("codevault-count").innerText = data.value;
@@ -13,7 +13,7 @@ function updateCodeVaultCounter() {
 }
 
 function incrementCodeVaultCounter() {
-    fetch(`${counterBaseUrl}/hit/aaronhastings.com/codevault`)
+    fetch(`${counterBaseUrl}/hit/https://a-a-rons-devspace.netlify.app/codevault`)
         .then(res => res.json())
         .then(data => {
             document.getElementById("codevault-count").innerText = data.value;
