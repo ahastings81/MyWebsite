@@ -3,7 +3,7 @@ console.log("Welcome to my portfolio!");
 const counterBaseUrl = "https://api.countapi.xyz";
 
 function updateCodeVaultCounter() {
-    fetch(`${counterBaseUrl}/get/https://a-a-rons-devspace.netlify.app//codevault`)
+    fetch(`${counterBaseUrl}/get/a-a-rons-devspace.netlify.app/codevault`)
         .then(res => res.json())
         .then(data => {
             document.getElementById("codevault-count").innerText = data.value;
@@ -12,7 +12,7 @@ function updateCodeVaultCounter() {
 }
 
 function incrementCodeVaultCounter() {
-    fetch(`${counterBaseUrl}/hit/https://a-a-rons-devspace.netlify.app//codevault`)
+    fetch(`${counterBaseUrl}/hit/a-a-rons-devspace.netlify.app/codevault`)
         .then(res => res.json())
         .then(data => {
             document.getElementById("codevault-count").innerText = data.value;
