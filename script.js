@@ -76,11 +76,7 @@ const phrase = 'A A Rons Devspace';
 const phraseLetters = phrase.split('');
 const fontSize = 18;
 let columns = Math.floor(canvas.width / fontSize);
-let drops = Array(columns).fill(1);
-
-// One special column to show full phrase vertically
-let phraseColumn = Math.floor(Math.random() * columns);
-let phraseStart = Math.floor(Math.random() * 20); // Starting offset for effect
+let drops = Array(columns).fill(0); // Start all columns at top
 
 function drawMatrix() {
     ctx.fillStyle = 'rgba(18, 18, 18, 0.05)';
@@ -93,30 +89,16 @@ function drawMatrix() {
         let x = i * fontSize;
         let y = drops[i] * fontSize;
 
-        if (i === phraseColumn) {
-            // Full phrase down the column
-            const charIndex = drops[i] - phraseStart;
-            if (charIndex >= 0 && charIndex < phraseLetters.length) {
-                ctx.fillText(phraseLetters[charIndex], x, y);
-            }
-        } else {
-            // Draw random character from phrase pool
-            const char = phraseLetters[Math.floor(Math.random() * phraseLetters.length)];
-            ctx.fillText(char, x, y);
-        }
+        const charIndex = drops[i] % phraseLetters.length;
+        const char = phraseLetters[charIndex];
 
-        // Reset when off screen
+        ctx.fillText(char, x, y);
+
         if (y > canvas.height && Math.random() > 0.975) {
             drops[i] = 0;
-
-            // Random chance to change phrase column
-            if (Math.random() > 0.95) {
-                phraseColumn = Math.floor(Math.random() * columns);
-                phraseStart = Math.floor(Math.random() * 20);
-            }
+        } else {
+            drops[i]++;
         }
-
-        drops[i]++;
     }
 }
 
@@ -126,7 +108,7 @@ window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     columns = Math.floor(canvas.width / fontSize);
-    drops = Array(columns).fill(1);
+    drops = Array(columns).fill(0);
 });
 
 
