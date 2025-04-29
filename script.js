@@ -65,34 +65,48 @@ backToTopButton.addEventListener("click", () => {
         behavior: "smooth"
     });
 });
-// ----------------------------
-// Matrix Letters Effect
-// ----------------------------
-const canvas = document.getElementById('matrixCanvas');
-const ctx = canvas.getContext('2d');
+// Matrix background effect
 
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+document.body.appendChild(canvas);
+canvas.style.position = 'fixed';
+canvas.style.top = '0';
+canvas.style.left = '0';
+canvas.style.zIndex = '-1';
+canvas.style.pointerEvents = 'none';
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// Letters for the matrix effect: spelling out "A A Rons Devspace"
-const letters = 'A A rons devspace'.split('');
+const fontSize = 16;
+const columns = Math.floor(canvas.width / fontSize);
+const drops = Array(columns).fill(1);
 
-const fontSize = 18;
-const columns = canvas.width / fontSize; // number of columns
-const drops = Array.from({length: columns}).fill(1);
+const phrase = "AARONSDEVSPACE"; // Your special phrase
+let phraseColumn = Math.floor(Math.random() * columns); // Pick random column to show phrase
 
-function drawMatrix() {
-    ctx.fillStyle = 'rgba(18, 18, 18, 0.05)'; // slight trail effect
+function draw() {
+    ctx.fillStyle = 'rgba(18, 18, 18, 0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = '#76c7c0'; // same color as your site accents
-    ctx.font = `${fontSize}px monospace`;
+    ctx.fillStyle = '#0F0'; // Matrix green
+    ctx.font = fontSize + 'px monospace';
 
     for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random() * letters.length)];
+        let text;
+
+        if (i === phraseColumn) {
+            // Calculate which letter from phrase to show
+            const phraseIndex = (drops[i] - 1) % phrase.length;
+            text = phrase[phraseIndex];
+        } else {
+            // Random character
+            text = String.fromCharCode(0x30A0 + Math.random() * 96);
+        }
+
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-        // reset randomly after it goes off screen
+        // Reset drop randomly or if drop is too long
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
             drops[i] = 0;
         }
@@ -101,10 +115,16 @@ function drawMatrix() {
     }
 }
 
-setInterval(drawMatrix, 50);
+// Update phrase column randomly every 10 seconds
+setInterval(() => {
+    phraseColumn = Math.floor(Math.random() * columns);
+}, 10000);
 
-// Update canvas size if window resizes
+setInterval(draw, 33);
+
+// Resize canvas when window size changes
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 });
+
