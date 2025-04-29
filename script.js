@@ -75,7 +75,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 // Letters for the matrix effect: spelling out "A A Rons Devspace"
-const letters = 'A A Rons Devspace '.split('');
+const letters = 'Hire me '.split('');
 
 const fontSize = 18;
 const columns = canvas.width / fontSize; // number of columns
