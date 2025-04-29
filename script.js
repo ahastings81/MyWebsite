@@ -66,37 +66,34 @@ backToTopButton.addEventListener("click", () => {
     });
 });
 // Matrix background effect
-const canvas = document.getElementById("matrixCanvas");
-const ctx = canvas.getContext("2d");
+// ----------------------------
+// Matrix Letters Effect
+// ----------------------------
+const canvas = document.getElementById('matrixCanvas');
+const ctx = canvas.getContext('2d');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const letters = "AARONSDEVSPACE"; // Only use your portfolio phrase letters
-const fontSize = 16;
-const columns = Math.floor(canvas.width / fontSize);
-const drops = Array(columns).fill(1);
+// Letters for the matrix effect: spelling out "A A Rons Devspace"
+const letters = 'A A Rons Devspace '.split('');
 
-let phraseColumn = Math.floor(Math.random() * columns);
+const fontSize = 18;
+const columns = canvas.width / fontSize; // number of columns
+const drops = Array.from({length: columns}).fill(1);
 
-function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+function drawMatrix() {
+    ctx.fillStyle = 'rgba(18, 18, 18, 0.05)'; // slight trail effect
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "#0F0"; 
-    ctx.font = fontSize + "px monospace";
+    ctx.fillStyle = '#76c7c0'; // same color as your site accents
+    ctx.font = `${fontSize}px monospace`;
 
     for (let i = 0; i < drops.length; i++) {
-        let text;
-        if (i === phraseColumn) {
-            const phrase = "AARONSDEVSPACE";
-            text = phrase[drops[i] % phrase.length];
-        } else {
-            text = letters[Math.floor(Math.random() * letters.length)];
-        }
-
+        const text = letters[Math.floor(Math.random() * letters.length)];
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
+        // reset randomly after it goes off screen
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
             drops[i] = 0;
         }
@@ -105,19 +102,13 @@ function draw() {
     }
 }
 
-setInterval(draw, 50);
+setInterval(drawMatrix, 50);
 
-// Change the phrase column every 10 seconds
-setInterval(() => {
-    phraseColumn = Math.floor(Math.random() * columns);
-}, 10000);
-
-// Resize handling
+// Update canvas size if window resizes
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 });
 
-setInterval(draw, 33); // Draw the effect every 33ms
 
 
