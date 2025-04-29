@@ -66,15 +66,8 @@ backToTopButton.addEventListener("click", () => {
     });
 });
 // Matrix background effect
-
-const canvas = document.createElement('canvas');
+const canvas = document.getElementById('matrixCanvas');  // Get the canvas from HTML
 const ctx = canvas.getContext('2d');
-document.body.appendChild(canvas);
-canvas.style.position = 'fixed';
-canvas.style.top = '0';
-canvas.style.left = '0';
-canvas.style.zIndex = '-1';
-canvas.style.pointerEvents = 'none';
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -82,7 +75,7 @@ const fontSize = 16;
 const columns = Math.floor(canvas.width / fontSize);
 const drops = Array(columns).fill(1);
 
-const phrase = "AAronsdevspace"; // Your special phrase
+const phrase = "AARONSDEVSPACE"; // Your special phrase
 let phraseColumn = Math.floor(Math.random() * columns); // Pick random column to show phrase
 
 function draw() {
@@ -92,18 +85,16 @@ function draw() {
     ctx.fillStyle = '#0F0'; // Matrix green
     ctx.font = fontSize + 'px monospace';
 
+    const letters = "AARONSDEVSPACE"; // Only use letters from phrase
+
     for (let i = 0; i < drops.length; i++) {
         let text;
 
         if (i === phraseColumn) {
-            // Calculate which letter from phrase to show
             const phraseIndex = (drops[i] - 1) % phrase.length;
             text = phrase[phraseIndex];
         } else {
-            // Random character
-            const letters = "AAronsdevspace";
             text = letters[Math.floor(Math.random() * letters.length)];
-
         }
 
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -122,11 +113,6 @@ setInterval(() => {
     phraseColumn = Math.floor(Math.random() * columns);
 }, 10000);
 
-setInterval(draw, 33);
+setInterval(draw, 33); // Draw the effect every 33ms
 
-// Resize canvas when window size changes
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
 
