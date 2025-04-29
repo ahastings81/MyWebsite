@@ -76,7 +76,12 @@ const phrase = 'A A Rons Devspace';
 const phraseLetters = phrase.split('');
 const fontSize = 18;
 let columns = Math.floor(canvas.width / fontSize);
-let drops = Array(columns).fill(0); // Start all columns at top
+
+// Each column tracks both drop position and character offset
+let drops = Array.from({ length: columns }, () => ({
+    y: 0,
+    offset: Math.floor(Math.random() * phraseLetters.length)
+}));
 
 function drawMatrix() {
     ctx.fillStyle = 'rgba(18, 18, 18, 0.05)';
@@ -87,17 +92,18 @@ function drawMatrix() {
 
     for (let i = 0; i < columns; i++) {
         let x = i * fontSize;
-        let y = drops[i] * fontSize;
+        let y = drops[i].y * fontSize;
 
-        const charIndex = drops[i] % phraseLetters.length;
+        const charIndex = (drops[i].y + drops[i].offset) % phraseLetters.length;
         const char = phraseLetters[charIndex];
 
         ctx.fillText(char, x, y);
 
         if (y > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
+            drops[i].y = 0;
+            drops[i].offset = Math.floor(Math.random() * phraseLetters.length); // Optional: re-randomize offset
         } else {
-            drops[i]++;
+            drops[i].y++;
         }
     }
 }
@@ -108,8 +114,12 @@ window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     columns = Math.floor(canvas.width / fontSize);
-    drops = Array(columns).fill(0);
+    drops = Array.from({ length: columns }, () => ({
+        y: 0,
+        offset: Math.floor(Math.random() * phraseLetters.length)
+    }));
 });
+
 
 
 
