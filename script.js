@@ -82,7 +82,7 @@ const fontSize = 16;
 const columns = Math.floor(canvas.width / fontSize);
 const drops = Array(columns).fill(1);
 
-const phrase = "AARONSDEVSPACE"; // Your special phrase
+const phrase = "AAronsdevspace"; // Your special phrase
 let phraseColumn = Math.floor(Math.random() * columns); // Pick random column to show phrase
 
 function draw() {
@@ -101,7 +101,9 @@ function draw() {
             text = phrase[phraseIndex];
         } else {
             // Random character
-            text = String.fromCharCode(0x30A0 + Math.random() * 96);
+            const letters = "AAronsdevspace";
+            text = letters[Math.floor(Math.random() * letters.length)];
+
         }
 
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
